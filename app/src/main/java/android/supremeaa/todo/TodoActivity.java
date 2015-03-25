@@ -2,9 +2,11 @@ package android.supremeaa.todo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.supremeaa.todo.Controller.TaskSerializer;
 import android.supremeaa.todo.Model.Task;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -28,14 +30,6 @@ public class TodoActivity extends Activity  {
     public static Context context;
     public static ListView listView;
 
-    private TextView display;
-    private Button changeDate;
-
-    private int year;
-    private int month;
-    private int day;
-
-    static final int DATE_PICKER_ID = 1111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -70,10 +64,22 @@ public class TodoActivity extends Activity  {
         ArrayAdapter<String> listItemAdapter = new ArrayAdapter<String>(this, R.layout.center_layout, R.id.title, listItems);
         ListView lv = (ListView) this.findViewById(R.id.listView);
         lv.setAdapter(listItemAdapter);
+
+        Button addButton = (Button)findViewById(R.id.button_add);
+        addButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.i("clicks", "You Clicked B1");
+                Intent intent = new Intent(TodoActivity.this, ActivityTodo.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void sendMessage(View view) {
+    public void addTask(View v) {
         // Do something in response to button click
+
     }
+
 
 }
