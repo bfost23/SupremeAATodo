@@ -15,10 +15,10 @@ import java.util.List;
  * Created by Student on 3/1/2015.
  */
 public class TaskAdapter extends  ArrayAdapter<Task>{
+    private List<Task> tasks;
     public TaskAdapter(Context context , int textViewResourceId) {
         super(context, textViewResourceId);
     }
-    private List<Task> tasks;
 
     public TaskAdapter(Context context, int resource, List<Task> task){
         super(context, resource, task);
@@ -33,15 +33,15 @@ public class TaskAdapter extends  ArrayAdapter<Task>{
         TextView date = null;
         TextView priority = null;
 
-        if(view == null){
+        if(view == null) {
             LayoutInflater layoutInflater;
             layoutInflater = LayoutInflater.from(getContext());
-            view = layoutInflater.inflate(R.layout.center_layout, null);
-
-            title = (TextView)view.findViewById(R.id.title);
-            date = (TextView)view.findViewById(R.id.date);
-            priority = (TextView)view.findViewById(R.id.priority);
+            view = layoutInflater.inflate(R.layout.list_item, null);
         }
+
+        title = (TextView)view.findViewById(R.id.title);
+        date = (TextView)view.findViewById(R.id.date);
+        priority = (TextView)view.findViewById(R.id.priority);
 
         Task task = tasks.get(position);
 
@@ -59,6 +59,8 @@ public class TaskAdapter extends  ArrayAdapter<Task>{
                 view.setBackgroundColor(Color.RED);
             }else if(task.getPriority().equalsIgnoreCase("2")){
                 view.setBackgroundColor(Color.BLUE);
+            } else if(task.getPriority().equalsIgnoreCase("3")){
+                view.setBackgroundColor(Color.WHITE);
             }
         }
 
